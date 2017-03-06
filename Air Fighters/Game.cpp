@@ -9,7 +9,7 @@ Game::Game()
 {
 	if (!mTexture.loadFromFile("Assets/Textures/Eagle.png"))
 	{
-		//Handle loading error
+		// TODO: Handle loading error
 	}
 	mPlayer.setTexture(mTexture);
 	mPlayer.setPosition(100.0f, 100.0f);
