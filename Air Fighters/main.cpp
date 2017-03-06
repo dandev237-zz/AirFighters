@@ -1,5 +1,10 @@
 #include "Game.h"
-#include "TextureHolder.h"
+
+//Namespace for textures ID values
+namespace Textures
+{
+	enum class ID{Landscape, Airplane};
+}
 
 int main()
 {
