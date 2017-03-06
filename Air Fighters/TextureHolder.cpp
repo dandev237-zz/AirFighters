@@ -1,4 +1,5 @@
 #include "TextureHolder.h"
+#include <assert.h>
 
 TextureHolder::TextureHolder()
 {}
@@ -10,17 +11,22 @@ void TextureHolder::load(Textures::ID id, const std::string& filename)
 {
 	//Create new unique_ptr which owns the texture
 	std::unique_ptr<sf::Texture> texture(new sf::Texture());
-	texture->loadFromFile(filename);
+	if (!texture->loadFromFile(filename)) {
+		throw std::runtime_error("TextureHolder::load - Failed to load " + filename);
+	}
 
 	//Create a pair with a texture ID and a new unique pointer created by
-	//transferring ownership from our previously created smart pointer to
-	//a new one
-	mTextureMap.insert(std::make_pair(id, std::move(texture)));
+	//transferring ownership to a new unique_ptr
+	//inserted is a pair containing an interator and a boolean value
+	auto inserted = mTextureMap.insert(std::make_pair(id, std::move(texture)));
+	assert(inserted.second);
 }
 
 const sf::Texture& TextureHolder::get(Textures::ID id) const
 {
 	auto found = mTextureMap.find(id);
+	assert(found != mTextureMap.end());
+
 	return *found->second;
 }
 

@@ -7,13 +7,6 @@ Game::Game()
 	: mWindow(sf::VideoMode(640, 480), "Air Fighters"), mTexture(), mPlayer(),
 	mIsMovingDown(false), mIsMovingLeft(false), mIsMovingRight(false), mIsMovingUp(false)
 {
-	if (!mTexture.loadFromFile("Assets/Textures/Eagle.png"))
-	{
-		// TODO: Handle loading error
-	}
-	mPlayer.setTexture(mTexture);
-	mPlayer.setPosition(100.0f, 100.0f);
-
 	//Enables V-Sync
 	mWindow.setVerticalSyncEnabled(true);
 }
