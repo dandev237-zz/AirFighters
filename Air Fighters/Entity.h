@@ -1,10 +1,11 @@
 #pragma once
 
 #include <SFML\System\Vector2.hpp>
+#include "SceneNode.h"
 
 // TODO: Convert this system for entity handling into an ECS system!!!
 
-class Entity
+class Entity : public SceneNode
 {
 public:
 

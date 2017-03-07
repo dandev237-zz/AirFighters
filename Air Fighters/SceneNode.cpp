@@ -23,3 +23,15 @@ SceneNode::Ptr SceneNode::detachChild(const SceneNode& node)
 	
 	return result;
 }
+
+void SceneNode::draw(sf::RenderTarget& target, sf::RenderStates states) const
+{
+	//Combine the parent's absolute transform with the current node's relative transform
+	states.transform *= getTransform();
+
+	drawCurrent(target, states);
+
+	for (const Ptr& child: mChildren) {
+		child->draw(target, states);
+	}
+}

@@ -1,13 +1,11 @@
 #include "Game.h"
-
-//Namespace for textures ID values
-namespace Textures
-{
-	enum class ID{Landscape, Airplane};
-}
+#include "ResourceManager.h"
+#include "ResourceIdentifiers.h"
 
 int main()
 {
+	TextureManager textureManager;
 	Game game;
+
 	game.run();
 }
