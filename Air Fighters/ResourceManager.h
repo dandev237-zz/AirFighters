@@ -1,10 +1,11 @@
 #pragma once
 
-#include "ResourceIdentifiers.h"
 #include <SFML/Graphics.hpp>
 #include <map>
 #include <memory>
 #include <assert.h>
+
+#include "ResourceIdentifiers.h"
 
 template <typename Resource, typename Identifier>
 class ResourceManager
