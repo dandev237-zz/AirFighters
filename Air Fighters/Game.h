@@ -1,12 +1,12 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include "World.h"
 
 class Game : private sf::NonCopyable
 {
 public:
 	Game();
-	~Game();
 
 	/**
 		Calls the game loop.
@@ -42,9 +42,7 @@ private:
 	static const sf::Time TimePerFrame;
 
 	sf::RenderWindow mWindow;
-	sf::Texture mTexture;
-	sf::Sprite mPlayer;
+	World mWorld;
 
 	bool mIsMovingUp, mIsMovingDown, mIsMovingLeft, mIsMovingRight;
 };
-

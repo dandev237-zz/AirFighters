@@ -1,19 +1,13 @@
 #include "Game.h"
 
-const float Game::PlayerSpeed = 100.0f;
 const sf::Time Game::TimePerFrame = sf::seconds(1.0f / 60.0f);	//60 Frames Per Second
 
 Game::Game()
-	: mWindow(sf::VideoMode(640, 480), "Air Fighters"), mTexture(), mPlayer(),
-	mIsMovingDown(false), mIsMovingLeft(false), mIsMovingRight(false), mIsMovingUp(false)
+	: mWindow(sf::VideoMode(640, 480), "Air Fighters", sf::Style::Close), mWorld(mWindow)
 {
 	//Enables V-Sync
 	mWindow.setVerticalSyncEnabled(true);
 }
-
-
-Game::~Game()
-{}
 
 void Game::run()
 {
@@ -60,32 +54,15 @@ void Game::processEvents()
 
 void Game::update(sf::Time deltaTime)
 {
-	sf::Vector2f movement(0.0f, 0.0f);
-
-	if (mIsMovingUp)
-	{
-		movement.y -= PlayerSpeed;
-	}
-	if (mIsMovingDown)
-	{
-		movement.y += PlayerSpeed;
-	}
-	if (mIsMovingLeft)
-	{
-		movement.x -= PlayerSpeed;
-	}
-	if (mIsMovingRight)
-	{
-		movement.x += PlayerSpeed;
-	}
-
-	mPlayer.move(movement * deltaTime.asSeconds());
+	mWorld.update(deltaTime);
 }
 
 void Game::render()
 {
 	mWindow.clear();
-	mWindow.draw(mPlayer);
+	mWorld.draw();
+
+	mWindow.setView(mWindow.getDefaultView());
 	mWindow.display();
 }
 

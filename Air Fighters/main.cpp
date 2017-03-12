@@ -1,11 +1,17 @@
+#include <stdexcept>
+
 #include "Game.h"
-#include "ResourceManager.h"
-#include "ResourceIdentifiers.h"
+
 
 int main()
 {
-	TextureManager textureManager;
-	Game game;
+	try {
+		Game game;
+		game.run();
+	}
+	catch (std::runtime_error& e) {
+		printf("EXCEPTION: %s\n", e.what());
+	}
 
-	game.run();
+	return 0;
 }

@@ -13,10 +13,14 @@ class ResourceManager
 public:
 
 	/**
-		Loads a resource from memory.
-		Throws std::runtime_error if the resource could not be loaded.
+	Loads a resource from memory.
+	Throws std::runtime_error if the resource could not be loaded.
+	*/
+	void load(Identifier id, const std::string& filename);
 
-		secondParameter "default" value to be checked is 0. This indicates a lack of a third parameter.
+	/**
+		Loads a resource from memory. Overloaded version of "load()" with an aditional parameter.
+		Throws std::runtime_error if the resource could not be loaded.
 	*/
 	template <typename Parameter>
 	void load(Identifier id, const std::string& filename, const Parameter& secondParameter);
@@ -34,35 +38,44 @@ public:
 
 private:
 	std::map<Identifier, std::unique_ptr<Resource>> mResourceMap;
+
+	/**
+		Helper function. Inserts a new resource in the resource map.
+		Throws std::runtime_error if the resource could not be loaded or if it is invalid.
+	*/
+	void insertResource(std::unique_ptr<Resource> resource, Identifier id);
 };
 
 //include "ResourceManager.inl" -- DOESN'T WORK. TODO: FIND OUT WHY
 
-template <typename Resource, typename Identifier>
-template <typename Parameter>
-inline void ResourceManager<Resource, Identifier>::load(Identifier id, const std::string& filename, const Parameter& secondParameter)
+template<typename Resource, typename Identifier>
+inline void ResourceManager<Resource, Identifier>::load(Identifier id, const std::string& filename)
 {
 	//Create new unique_ptr which owns the resource
 	std::unique_ptr<Resource> resource(new Resource());
-
-	//Check secondParameter validity
-	if (secondParameter != 0)
-	{
-		resource->loadFromFile(filename, *secondParameter);
-	}
-	else
-	{
-		resource->loadFromFile(filename);
-	}
+	resource->loadFromFile(filename);
 
 	if (!resource)
 	{
 		throw std::runtime_error("ResourceHolder::load - Failed to load " + filename);
 	}
 
-	//inserted is a pair containing an interator and a boolean value
-	auto inserted = mResourceMap.insert(std::make_pair(id, std::move(ResourcePointer)));
-	assert(inserted.second);
+	insertResource(std::move(resource), id);
+}
+
+template <typename Resource, typename Identifier>
+template <typename Parameter>
+inline void ResourceManager<Resource, Identifier>::load(Identifier id, const std::string& filename, const Parameter& secondParameter)
+{
+	std::unique_ptr<Resource> resource(new Resource());
+	resource->loadFromFile(filename, secondParameter);
+
+	if (!resource)
+	{
+		throw std::runtime_error("ResourceHolder::load - Failed to load " + filename);
+	}
+
+	insertResource(std::move(resource), id);
 }
 
 template <typename Resource, typename Identifier>
@@ -79,4 +92,13 @@ inline Resource& ResourceManager<Resource, Identifier>::get(Identifier id)
 {
 	//Neat trick to avoid code duplication
 	return const_cast<Resource&> (static_cast<const ResourceManager&> (*this).get(id));
+}
+
+template<typename Resource, typename Identifier>
+inline void ResourceManager<Resource, Identifier>::insertResource(std::unique_ptr<Resource> resource, Identifier id)
+{
+
+	//inserted is a pair containing an interator and a boolean value
+	auto inserted = mResourceMap.insert(std::make_pair(id, std::move(resource)));
+	assert(inserted.second);
 }

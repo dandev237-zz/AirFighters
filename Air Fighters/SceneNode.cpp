@@ -1,4 +1,10 @@
+#include <algorithm>
 #include "SceneNode.h"
+
+SceneNode::SceneNode()
+	: mChildren(), mParent(nullptr)
+{
+}
 
 void SceneNode::attachChild(Ptr child)
 {

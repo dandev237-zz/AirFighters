@@ -12,8 +12,7 @@ public:
 	typedef std::unique_ptr<SceneNode> Ptr;
 
 public:
-	SceneNode() : mParent(nullptr) {};
-	virtual ~SceneNode() {};
+	SceneNode();
 
 	/**
 		Attaches a node to this node.
