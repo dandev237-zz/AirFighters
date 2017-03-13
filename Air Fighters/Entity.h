@@ -14,11 +14,14 @@ public:
 	void setVelocity(float x, float y);
 
 	sf::Vector2f getVelocity() const;
-
-private:
-	virtual void updateCurrent(sf::Time deltaTime);
+	
+	void accelerate(sf::Vector2f velocity);
+	void accelerate(float x, float y);
 
 private:
 	sf::Vector2f mVelocity;
+
+private:
+	virtual void updateCurrent(sf::Time deltaTime);
 };
 

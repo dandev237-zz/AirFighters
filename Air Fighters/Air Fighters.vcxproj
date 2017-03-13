@@ -148,8 +148,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Aircraft.h" />
+    <ClInclude Include="Category.h" />
+    <ClInclude Include="Command.h" />
+    <ClInclude Include="CommandQueue.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="ResourceIdentifiers.h" />
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="SceneNode.h" />
@@ -158,9 +162,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Aircraft.cpp" />
+    <ClCompile Include="Command.cpp" />
+    <ClCompile Include="CommandQueue.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="SceneNode.cpp" />
     <ClCompile Include="SpriteNode.cpp" />
     <ClCompile Include="World.cpp" />

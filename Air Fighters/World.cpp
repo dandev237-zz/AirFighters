@@ -28,24 +28,48 @@ void World::update(sf::Time deltaTime)
 {
 	//Background scrolling
 	mWorldView.move(0.0f, mScrollSpeed * deltaTime.asSeconds());
+	mPlayerAircraft->setVelocity(0.0f, 0.0f);
 
-	sf::Vector2f position = mPlayerAircraft->getPosition();
-	sf::Vector2f velocity = mPlayerAircraft->getVelocity();
-
-	//Player border constraint
-	if (position.x <= mWorldBounds.left + 150 || position.x > mWorldBounds.left + mWorldBounds.width - 150) 
+	//Forward all commands to the scene graph
+	while (!mCommandQueue.isEmpty())
 	{
-		velocity.x = 0.0f;
-		mPlayerAircraft->setVelocity(velocity);
+		mSceneGraph.onCommand(mCommandQueue.pop(), deltaTime);
 	}
 
+	sf::Vector2f velocity = mPlayerAircraft->getVelocity();
+
+	//Check for diagonal movements
+	if (velocity.x != 0.0f && velocity.y != 0.0f)
+	{
+		mPlayerAircraft->setVelocity(velocity / std::sqrt(2.0f));
+	}
+
+	mPlayerAircraft->accelerate(0.0f, mScrollSpeed);
+
 	mSceneGraph.update(deltaTime);
+
+	//Check if plane is visible within the view
+	sf::FloatRect viewBounds(mWorldView.getCenter() - mWorldView.getSize() / 2.0f, mWorldView.getSize());
+	const float borderDistance = 40.0f;
+
+	sf::Vector2f position = mPlayerAircraft->getPosition();
+	position.x = std::max(position.x, viewBounds.left + borderDistance);
+	position.x = std::min(position.x, viewBounds.left + viewBounds.width - borderDistance);
+	position.y = std::max(position.y, viewBounds.top + borderDistance);
+	position.y = std::min(position.y, viewBounds.top + viewBounds.height - borderDistance);
+
+	mPlayerAircraft->setPosition(position);
 }
 
 void World::draw()
 {
 	mWindow.setView(mWorldView);
 	mWindow.draw(mSceneGraph);
+}
+
+CommandQueue& World::getCommandQueue()
+{
+	return mCommandQueue;
 }
 
 void World::loadTextures()

@@ -17,7 +17,8 @@ void Game::run()
 	while (mWindow.isOpen())
 	{
 		//clock measures the time from when it was started, so we can use it to get the delta time
-		timeSinceLastUpdate += clock.restart();
+		sf::Time deltaTime = clock.restart();
+		timeSinceLastUpdate += deltaTime;
 
 		//Fixed Time Steps technique application
 		//The same delta time is given to the update function no matter what happens
@@ -25,14 +26,14 @@ void Game::run()
 		while (timeSinceLastUpdate > TimePerFrame)
 		{
 			timeSinceLastUpdate -= TimePerFrame;
-			processEvents();
+			processEvents(deltaTime);
 			update(TimePerFrame);
 		}
 		render();
 	}
 }
 
-void Game::processEvents()
+void Game::processEvents(const sf::Time& deltaTime)
 {
 	sf::Event gameEvent;
 	while (mWindow.pollEvent(gameEvent))
@@ -40,10 +41,7 @@ void Game::processEvents()
 		switch (gameEvent.type)
 		{
 		case sf::Event::KeyPressed:
-			handlePlayerInput(gameEvent.key.code, true);
-			break;
-		case sf::Event::KeyReleased:
-			handlePlayerInput(gameEvent.key.code, false);
+			//handlePlayerInput(deltaTime);
 			break;
 		case sf::Event::Closed:
 			mWindow.close();
@@ -66,22 +64,20 @@ void Game::render()
 	mWindow.display();
 }
 
-void Game::handlePlayerInput(sf::Keyboard::Key key, bool isPressed)
+void Game::processInput()
 {
-	if (key == sf::Keyboard::W)
+	CommandQueue& commands = mWorld.getCommandQueue();
+
+	sf::Event gameEvent;
+	while (mWindow.pollEvent(gameEvent))
 	{
-		mIsMovingUp = isPressed;
+		mPlayer.handleEvent(gameEvent, commands);
+
+		if (gameEvent.type == sf::Event::Closed)
+		{
+			mWindow.close();
+		}
 	}
-	else if (key == sf::Keyboard::S)
-	{
-		mIsMovingDown = isPressed;
-	}
-	else if (key == sf::Keyboard::A)
-	{
-		mIsMovingLeft = isPressed;
-	}
-	else if (key == sf::Keyboard::D)
-	{
-		mIsMovingRight = isPressed;
-	}
+
+	mPlayer.handleRealTimeInput(commands);
 }

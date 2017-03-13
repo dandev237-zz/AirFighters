@@ -10,6 +10,7 @@
 #include "SceneNode.h"
 #include "SpriteNode.h"
 #include "Aircraft.h"
+#include "CommandQueue.h"
 
 //Forward declarations
 namespace sf 
@@ -23,6 +24,8 @@ public:
 	explicit World(sf::RenderWindow& window);
 	void update(sf::Time deltaTime);
 	void draw();
+
+	CommandQueue& getCommandQueue();
 
 private:
 	void loadTextures();
@@ -43,5 +46,6 @@ private:
 	float mScrollSpeed;
 	Aircraft* mPlayerAircraft;
 
+	CommandQueue mCommandQueue;
 };
 

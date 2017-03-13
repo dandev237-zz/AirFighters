@@ -2,6 +2,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "World.h"
+#include "Player.h"
 
 class Game : private sf::NonCopyable
 {
@@ -17,7 +18,7 @@ private:
 	/**
 		Handles game events.
 	*/
-	void processEvents();
+	void processEvents(const sf::Time& deltaTime);
 
 	/**
 		Updates the game logic.
@@ -33,9 +34,9 @@ private:
 	void render();
 
 	/**
-		Handles game events related to user input.
+	Handles game events related to user input.
 	*/
-	void handlePlayerInput(sf::Keyboard::Key key, bool isPressed);
+	void processInput();
 
 private:
 	static const float PlayerSpeed;
@@ -43,6 +44,5 @@ private:
 
 	sf::RenderWindow mWindow;
 	World mWorld;
-
-	bool mIsMovingUp, mIsMovingDown, mIsMovingLeft, mIsMovingRight;
+	Player mPlayer;
 };

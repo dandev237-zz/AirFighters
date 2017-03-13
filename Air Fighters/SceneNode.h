@@ -6,6 +6,9 @@
 #include <algorithm>
 #include <assert.h>
 
+#include "Category.h"
+#include "Command.h"
+
 class SceneNode : public sf::Transformable, public sf::Drawable, private sf::NonCopyable
 {
 public:
@@ -25,8 +28,12 @@ public:
 	Ptr detachChild(const SceneNode& node);
 
 	void update(sf::Time deltaTime);
+
 	sf::Transform getWorldTransform() const;
 	sf::Vector2f getWorldPosition() const;
+
+	virtual unsigned int getCategory() const;
+	void onCommand(const Command& command, sf::Time deltaTime);
 
 private:
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;

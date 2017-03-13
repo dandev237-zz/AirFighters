@@ -21,30 +21,45 @@
     <Filter Include="Source Files\SceneGraph">
       <UniqueIdentifier>{d1b46792-d347-4ca5-a130-3086f873b357}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\CommandPattern">
+      <UniqueIdentifier>{8835f6fd-1b56-44c2-8776-e91469af0889}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ResourceManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Entity.h">
+    <ClInclude Include="World.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Aircraft.h">
-      <Filter>Header Files</Filter>
+      <Filter>Source Files\Entities</Filter>
     </ClInclude>
-    <ClInclude Include="SceneNode.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Entity.h">
+      <Filter>Source Files\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceManager.h">
+      <Filter>Source Files\ResourceManager</Filter>
     </ClInclude>
     <ClInclude Include="ResourceIdentifiers.h">
-      <Filter>Header Files</Filter>
+      <Filter>Source Files\ResourceManager</Filter>
     </ClInclude>
     <ClInclude Include="SpriteNode.h">
-      <Filter>Header Files</Filter>
+      <Filter>Source Files\SceneGraph</Filter>
     </ClInclude>
-    <ClInclude Include="World.h">
+    <ClInclude Include="SceneNode.h">
+      <Filter>Source Files\SceneGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="Command.h">
+      <Filter>Source Files\CommandPattern</Filter>
+    </ClInclude>
+    <ClInclude Include="Category.h">
+      <Filter>Source Files\CommandPattern</Filter>
+    </ClInclude>
+    <ClInclude Include="CommandQueue.h">
+      <Filter>Source Files\CommandPattern</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -68,6 +83,15 @@
       <Filter>Source Files\SceneGraph</Filter>
     </ClCompile>
     <ClCompile Include="World.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Command.cpp">
+      <Filter>Source Files\CommandPattern</Filter>
+    </ClCompile>
+    <ClCompile Include="CommandQueue.cpp">
+      <Filter>Source Files\CommandPattern</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

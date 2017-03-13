@@ -15,6 +15,8 @@ public:
 	Aircraft(Type type, const TextureManager& textures);
 	virtual void drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const;
 
+	virtual unsigned int getCategory() const;
+
 private:
 	Type mType;
 	sf::Sprite mSprite;

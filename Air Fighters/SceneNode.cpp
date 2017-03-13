@@ -54,6 +54,27 @@ sf::Vector2f SceneNode::getWorldPosition() const
 	return getWorldTransform() * sf::Vector2f();
 }
 
+unsigned int SceneNode::getCategory() const
+{
+	return static_cast<unsigned int>(Category::Type::Scene);
+}
+
+void SceneNode::onCommand(const Command& command, sf::Time deltaTime)
+{
+	//Check if node is a receiver of the command
+	if (command.category & getCategory())
+	{
+		//Execute the command by calling action() callback
+		command.action(*this, deltaTime);
+	}
+
+	//Forward command to all child nodes
+	for (Ptr& child : mChildren)
+	{
+		child->onCommand(command, deltaTime);
+	}
+}
+
 void SceneNode::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
 	//Combine the parent's absolute transform with the current node's relative transform
