@@ -22,6 +22,8 @@ public:
 
 	Player();
 
+	void InitializeBindings();
+
 	/**
 		React to SFML Events.
 	*/

@@ -19,23 +19,29 @@ struct AircraftMover
 
 Player::Player()
 {
-	mKeyBinding[sf::Keyboard::Up] = Action::MoveUp;
-	mKeyBinding[sf::Keyboard::Down] = Action::MoveDown;
-	mKeyBinding[sf::Keyboard::Left] = Action::MoveLeft;
-	mKeyBinding[sf::Keyboard::Right] = Action::MoveRight;
-
-	const float playerSpeed = 200.f;
-
-	//Initial action bindings
-	mActionBinding[Action::MoveUp].action = derivedAction<Aircraft>(AircraftMover(0.f, -playerSpeed));
-	mActionBinding[Action::MoveDown].action = derivedAction<Aircraft>(AircraftMover(0.f, +playerSpeed));
-	mActionBinding[Action::MoveLeft].action = derivedAction<Aircraft>(AircraftMover(-playerSpeed, 0.f));
-	mActionBinding[Action::MoveRight].action = derivedAction<Aircraft>(AircraftMover(+playerSpeed, 0.f));
+	InitializeBindings();
 
 	for (auto& pair : mActionBinding) 
 	{
 		pair.second.category = static_cast<unsigned int>(Category::Type::PlayerAircraft);
 	}
+}
+
+void Player::InitializeBindings()
+{
+	const float playerSpeed = 200.f;
+
+	//Key bindings
+	mKeyBinding[sf::Keyboard::Up] = Action::MoveUp;
+	mKeyBinding[sf::Keyboard::Down] = Action::MoveDown;
+	mKeyBinding[sf::Keyboard::Left] = Action::MoveLeft;
+	mKeyBinding[sf::Keyboard::Right] = Action::MoveRight;
+
+	//Action bindings
+	mActionBinding[Action::MoveUp].action = derivedAction<Aircraft>(AircraftMover(0.f, -playerSpeed));
+	mActionBinding[Action::MoveDown].action = derivedAction<Aircraft>(AircraftMover(0.f, +playerSpeed));
+	mActionBinding[Action::MoveLeft].action = derivedAction<Aircraft>(AircraftMover(-playerSpeed, 0.f));
+	mActionBinding[Action::MoveRight].action = derivedAction<Aircraft>(AircraftMover(+playerSpeed, 0.f));
 }
 
 void Player::handleEvent(const sf::Event & event, CommandQueue & commands)
