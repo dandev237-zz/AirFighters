@@ -3,9 +3,10 @@
 #include <SFML\Window\Event.hpp>
 #include <map>
 
-#include "Aircraft.h"
 #include "Command.h"
-#include "CommandQueue.h"
+
+//Forward declaration
+class CommandQueue;
 
 class Player
 {

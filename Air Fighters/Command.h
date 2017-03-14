@@ -3,19 +3,20 @@
 #include <functional>
 #include <SFML\System\Time.hpp>
 
-#include "SceneNode.h"
+#include "Category.h"
+
+class SceneNode;
 
 struct Command
 {
-	unsigned int category;
-
 	Command();
 
 	//Callback
 	std::function<void(SceneNode&, sf::Time)> action;
+	unsigned int category;
 
 	template <typename GameObject, typename Function>
-	inline std::function<void(SceneNode&, sf::Time)> Command::derivedAction(Function function)
+	std::function<void(SceneNode&, sf::Time)> Command::derivedAction(Function function)
 	{
 		return [=](SceneNode& node, sf::Time deltaTime)
 		{

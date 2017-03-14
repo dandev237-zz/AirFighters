@@ -1,4 +1,3 @@
-#include <algorithm>
 #include "SceneNode.h"
 
 SceneNode::SceneNode()

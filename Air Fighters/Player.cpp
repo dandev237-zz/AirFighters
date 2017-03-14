@@ -1,4 +1,6 @@
 #include "Player.h"
+#include "CommandQueue.h"
+#include "Aircraft.h"
 
 struct AircraftMover
 {
@@ -38,15 +40,14 @@ Player::Player()
 
 void Player::handleEvent(const sf::Event & event, CommandQueue & commands)
 {
-	if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::P) {
-		Command output;
-		output.category = static_cast<unsigned int>(Category::Type::PlayerAircraft);
-		output.action = [](SceneNode& node, sf::Time)
+	if (event.type == sf::Event::KeyPressed)
+	{
+		//If pressed key is binded, trigger command
+		auto found = mKeyBinding.find(event.key.code);
+		if (found != mKeyBinding.end() && !isRealTimeAction(found->second)) 
 		{
-			printf("%f, %f\n", node.getPosition().x, node.getPosition().y);
-		};
-
-		commands.push(output);
+			commands.push(mActionBinding[found->second]);
+		}
 	}
 }
 
@@ -59,5 +60,46 @@ void Player::handleRealTimeInput(CommandQueue& commands)
 		{
 			commands.push(mActionBinding[pair.second]);
 		}
+	}
+}
+
+void Player::assignKey(Action action, sf::Keyboard::Key key)
+{
+	for (auto binding : mKeyBinding)
+	{
+		if (binding.second == action) 
+		{
+			mKeyBinding.erase(binding.first);
+		}
+	}
+
+	mKeyBinding[key] = action;
+}
+
+sf::Keyboard::Key Player::getAssignedKey(Action action) const
+{
+	for (auto binding : mKeyBinding)
+	{
+		if (binding.second == action)
+		{
+			return binding.first;
+		}
+	}
+
+	return sf::Keyboard::Unknown;
+}
+
+bool Player::isRealTimeAction(Action action)
+{
+	switch (action)
+	{
+	case Action::MoveUp:
+	case Action::MoveDown:
+	case Action::MoveLeft:
+	case Action::MoveRight:
+		return true;
+
+	default:
+		return false;
 	}
 }
