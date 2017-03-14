@@ -22,7 +22,7 @@ Player::Player()
 {
 	InitializeBindings();
 
-	for (auto& pair : mActionBinding) 
+	for (auto& pair : mActionBinding)
 	{
 		pair.second.category = static_cast<unsigned int>(Category::Type::PlayerAircraft);
 	}
@@ -51,7 +51,7 @@ void Player::handleEvent(const sf::Event & event, CommandQueue & commands)
 	{
 		//If pressed key is binded, trigger command
 		auto found = mKeyBinding.find(event.key.code);
-		if (found != mKeyBinding.end() && !isRealTimeAction(found->second)) 
+		if (found != mKeyBinding.end() && !isRealTimeAction(found->second))
 		{
 			commands.push(mActionBinding[found->second]);
 		}
@@ -60,10 +60,10 @@ void Player::handleEvent(const sf::Event & event, CommandQueue & commands)
 
 void Player::handleRealTimeInput(CommandQueue& commands)
 {
-	for (auto pair : mKeyBinding) 
+	for (auto pair : mKeyBinding)
 	{
 		if (sf::Keyboard::isKeyPressed(pair.first)
-			&& isRealTimeAction(pair.second)) 
+			&& isRealTimeAction(pair.second))
 		{
 			commands.push(mActionBinding[pair.second]);
 		}
@@ -74,7 +74,7 @@ void Player::assignKey(Action action, sf::Keyboard::Key key)
 {
 	for (auto binding : mKeyBinding)
 	{
-		if (binding.second == action) 
+		if (binding.second == action)
 		{
 			mKeyBinding.erase(binding.first);
 		}

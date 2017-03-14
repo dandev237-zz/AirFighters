@@ -6,7 +6,7 @@ namespace sf {
 }
 
 namespace Textures {
-	enum class ID {Eagle, Raptor, Desert};
+	enum class ID { Eagle, Raptor, Desert };
 }
 
 //Forward declarations and type definitions

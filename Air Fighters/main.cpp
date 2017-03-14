@@ -2,7 +2,6 @@
 
 #include "Game.h"
 
-
 int main()
 {
 	try {

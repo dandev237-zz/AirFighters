@@ -17,7 +17,7 @@ Textures::ID toTextureID(Aircraft::Type type)
 	return texture;
 }
 
-Aircraft::Aircraft(Type type, const TextureManager& textures) 
+Aircraft::Aircraft(Type type, const TextureManager& textures)
 	: mType(type), mSprite(textures.get(toTextureID(type)))
 {
 	sf::FloatRect bounds = mSprite.getLocalBounds();
@@ -31,14 +31,14 @@ void Aircraft::drawCurrent(sf::RenderTarget& target, sf::RenderStates states) co
 
 unsigned int Aircraft::getCategory() const
 {
-	switch (mType) 
+	switch (mType)
 	{
-		case Type::Eagle:
-			return static_cast<unsigned int>(Category::Type::PlayerAircraft);
-			break;
+	case Type::Eagle:
+		return static_cast<unsigned int>(Category::Type::PlayerAircraft);
+		break;
 
-		default:
-			return static_cast<unsigned int>(Category::Type::EnemyAircraft);
-			break;
+	default:
+		return static_cast<unsigned int>(Category::Type::EnemyAircraft);
+		break;
 	}
 }

@@ -13,7 +13,7 @@
 #include "CommandQueue.h"
 
 //Forward declarations
-namespace sf 
+namespace sf
 {
 	class RenderWindow;
 }
@@ -32,7 +32,7 @@ private:
 	void buildScene();
 
 private:
-	enum class Layer {Background, Air, LayerCount};
+	enum class Layer { Background, Air, LayerCount };
 
 	sf::RenderWindow& mWindow;
 	sf::View mWorldView;
@@ -48,4 +48,3 @@ private:
 
 	CommandQueue mCommandQueue;
 };
-

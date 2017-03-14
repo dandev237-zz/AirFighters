@@ -91,7 +91,7 @@ void World::buildScene()
 	//Set background texture to repeat itself
 	sf::Texture& backgroundTexture = mTextures.get(Textures::ID::Desert);
 	backgroundTexture.setRepeated(true);
-	
+
 	//Make the background texture as big as the whole world
 	sf::IntRect textureRect(mWorldBounds);
 	std::unique_ptr<SpriteNode> backgroundSprite(new SpriteNode(backgroundTexture, textureRect));

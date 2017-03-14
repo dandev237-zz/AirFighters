@@ -9,7 +9,7 @@
 class Aircraft : public Entity
 {
 public:
-	enum class Type {Eagle, Raptor};
+	enum class Type { Eagle, Raptor };
 
 public:
 	Aircraft(Type type, const TextureManager& textures);
@@ -21,4 +21,3 @@ private:
 	Type mType;
 	sf::Sprite mSprite;
 };
-

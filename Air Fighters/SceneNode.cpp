@@ -25,7 +25,7 @@ SceneNode::Ptr SceneNode::detachChild(const SceneNode& node)
 	Ptr result = std::move(*found);
 	result->mParent = nullptr;
 	mChildren.erase(found);
-	
+
 	return result;
 }
 
@@ -81,7 +81,7 @@ void SceneNode::draw(sf::RenderTarget& target, sf::RenderStates states) const
 
 	drawCurrent(target, states);
 
-	for (const Ptr& child: mChildren) {
+	for (const Ptr& child : mChildren) {
 		child->draw(target, states);
 	}
 }
@@ -94,7 +94,7 @@ void SceneNode::updateCurrent(sf::Time deltaTime)
 
 void SceneNode::updateChildren(sf::Time deltaTime)
 {
-	for (Ptr& child: mChildren)
+	for (Ptr& child : mChildren)
 	{
 		child->update(deltaTime);
 	}

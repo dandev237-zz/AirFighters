@@ -41,9 +41,7 @@ private:
 	virtual void updateCurrent(sf::Time deltaTime);
 	void updateChildren(sf::Time deltaTime);
 
-
 private:
 	std::vector<Ptr> mChildren;
 	SceneNode* mParent;
 };
-

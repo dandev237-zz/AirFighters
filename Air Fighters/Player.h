@@ -44,4 +44,3 @@ private:
 	std::map<sf::Keyboard::Key, Action> mKeyBinding;
 	std::map<Action, Command> mActionBinding;
 };
-

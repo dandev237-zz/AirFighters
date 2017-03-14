@@ -97,7 +97,6 @@ inline Resource& ResourceManager<Resource, Identifier>::get(Identifier id)
 template<typename Resource, typename Identifier>
 inline void ResourceManager<Resource, Identifier>::insertResource(std::unique_ptr<Resource> resource, Identifier id)
 {
-
 	//inserted is a pair containing an interator and a boolean value
 	auto inserted = mResourceMap.insert(std::make_pair(id, std::move(resource)));
 	assert(inserted.second);
