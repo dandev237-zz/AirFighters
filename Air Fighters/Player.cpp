@@ -1,4 +1,5 @@
 #include "Player.h"
+#include "Command.h"
 #include "CommandQueue.h"
 #include "Aircraft.h"
 
@@ -38,10 +39,10 @@ void Player::InitializeBindings()
 	mKeyBinding[sf::Keyboard::Right] = Action::MoveRight;
 
 	//Action bindings
-	mActionBinding[Action::MoveUp].action = derivedAction<Aircraft>(AircraftMover(0.f, -playerSpeed));
-	mActionBinding[Action::MoveDown].action = derivedAction<Aircraft>(AircraftMover(0.f, +playerSpeed));
-	mActionBinding[Action::MoveLeft].action = derivedAction<Aircraft>(AircraftMover(-playerSpeed, 0.f));
-	mActionBinding[Action::MoveRight].action = derivedAction<Aircraft>(AircraftMover(+playerSpeed, 0.f));
+	mActionBinding[Action::MoveUp].action = Command::derivedAction<Aircraft>(AircraftMover(0.0f, -playerSpeed));
+	mActionBinding[Action::MoveDown].action = Command::derivedAction<Aircraft>(AircraftMover(0.0f, +playerSpeed));
+	mActionBinding[Action::MoveLeft].action = Command::derivedAction<Aircraft>(AircraftMover(-playerSpeed, 0.0f));
+	mActionBinding[Action::MoveRight].action = Command::derivedAction<Aircraft>(AircraftMover(+playerSpeed, 0.0f));
 }
 
 void Player::handleEvent(const sf::Event & event, CommandQueue & commands)
