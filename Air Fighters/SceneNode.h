@@ -43,5 +43,5 @@ private:
 
 private:
 	std::vector<Ptr> mChildren;
-	SceneNode* mParent;
+	SceneNode* mParent;			//TODO: Change to weak_ptr
 };

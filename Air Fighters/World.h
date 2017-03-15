@@ -3,7 +3,7 @@
 #include <SFML/System/NonCopyable.hpp>
 #include <SFML/Graphics/View.hpp>
 #include <SFML/Graphics/Texture.hpp>
-#include <array>
+#include <vector>
 
 #include "ResourceIdentifiers.h"
 #include "ResourceManager.h"
@@ -39,7 +39,7 @@ private:
 	TextureManager mTextures;
 
 	SceneNode mSceneGraph;
-	std::array<SceneNode*, static_cast<int>(Layer::LayerCount)> mSceneLayers;
+	std::vector<SceneNode*> mSceneLayers;
 
 	sf::FloatRect mWorldBounds;
 	sf::Vector2f mSpawnPosition;

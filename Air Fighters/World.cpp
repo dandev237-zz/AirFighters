@@ -18,6 +18,8 @@ World::World(sf::RenderWindow& window)
 
 	mPlayerAircraft = nullptr;
 
+	mSceneLayers.reserve(static_cast<unsigned int>(Layer::LayerCount));
+
 	loadTextures();
 	buildScene();
 
@@ -81,11 +83,14 @@ void World::loadTextures()
 
 void World::buildScene()
 {
+	unsigned int layerCount = static_cast<unsigned int>(Layer::LayerCount);
+
 	//Initialize the scene layers
-	for (auto layer : mSceneLayers) {
-		SceneNode::Ptr newLayer(new SceneNode());
-		layer = newLayer.get();			//get() does not transfer ownership
-		mSceneGraph.attachChild(std::move(newLayer));
+	for (std::size_t i = 0; i < layerCount; ++i)
+	{
+		SceneNode::Ptr layer(new SceneNode());
+		mSceneLayers.push_back(layer.get());
+		mSceneGraph.attachChild(std::move(layer));
 	}
 
 	//Set background texture to repeat itself

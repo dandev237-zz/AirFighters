@@ -45,7 +45,7 @@ void Player::InitializeBindings()
 	mActionBinding[Action::MoveRight].action = Command::derivedAction<Aircraft>(AircraftMover(+playerSpeed, 0.0f));
 }
 
-void Player::handleEvent(const sf::Event & event, CommandQueue & commands)
+void Player::handleEvent(const sf::Event& event, CommandQueue& commands)
 {
 	if (event.type == sf::Event::KeyPressed)
 	{

@@ -1,7 +1,7 @@
 #include "SceneNode.h"
 
 SceneNode::SceneNode()
-	: mChildren(), mParent(nullptr)
+	: mParent(nullptr), mChildren()
 {
 }
 
