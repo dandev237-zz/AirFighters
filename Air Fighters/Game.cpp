@@ -35,19 +35,20 @@ void Game::run()
 
 void Game::processEvents(const sf::Time& deltaTime)
 {
+	CommandQueue& commandQueue = mWorld.getCommandQueue();
 	sf::Event gameEvent;
+
 	while (mWindow.pollEvent(gameEvent))
 	{
-		switch (gameEvent.type)
+		mPlayer.handleEvent(gameEvent, commandQueue);
+
+		if (gameEvent.type == sf::Event::Closed)
 		{
-		case sf::Event::KeyPressed:
-			//handlePlayerInput(deltaTime);
-			break;
-		case sf::Event::Closed:
 			mWindow.close();
-			break;
 		}
 	}
+
+	mPlayer.handleRealTimeInput(commandQueue);
 }
 
 void Game::update(sf::Time deltaTime)
