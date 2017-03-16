@@ -22,6 +22,9 @@ public:
 
 	Player();
 
+	/**
+		Initializes bindings and actions when the game begins.
+	*/
 	void InitializeBindings();
 
 	/**
@@ -34,10 +37,22 @@ public:
 	*/
 	void handleRealTimeInput(CommandQueue& commands);
 
+	/**
+		Binds a given action to a given key.
+		Any other bindings to the same action are deleted beforehand.
+	*/
 	void assignKey(Action action, sf::Keyboard::Key key);
+
+	/**
+		Gets the key assigned to a given action.
+	*/
 	sf::Keyboard::Key getAssignedKey(Action action) const;
 
 private:
+	/**
+		Checks whether or not a given action is a realtime action
+		(It can be handled at runtime)
+	*/
 	static bool isRealTimeAction(Action action);
 
 private:

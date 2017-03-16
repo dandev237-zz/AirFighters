@@ -27,18 +27,39 @@ public:
 	*/
 	Ptr detachChild(const SceneNode& node);
 
+	/**
+		Updates the state of this node.
+	*/
 	void update(sf::Time deltaTime);
 
+	//Getters for transform and position
 	sf::Transform getWorldTransform() const;
 	sf::Vector2f getWorldPosition() const;
 
+	/**
+		Getter for the node category. Virtual so that each node can
+		have its own implementation.
+	*/
 	virtual unsigned int getCategory() const;
+
+	/**
+		Callback used when the node receives a command.
+	*/
 	void onCommand(const Command& command, sf::Time deltaTime);
 
 private:
+	/**
+		Draws the node to the game window.
+	*/
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
+
 	virtual void drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const;
 	virtual void updateCurrent(sf::Time deltaTime);
+
+	/**
+		Updates the states of this node's children.
+		Used when the update() method is called.
+	*/
 	void updateChildren(sf::Time deltaTime);
 
 private:

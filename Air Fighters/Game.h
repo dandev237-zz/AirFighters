@@ -34,7 +34,7 @@ private:
 	void render();
 
 	/**
-	Handles game events related to user input.
+		Handles game events related to user input.
 	*/
 	void processInput();
 

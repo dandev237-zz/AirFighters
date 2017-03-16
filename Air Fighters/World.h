@@ -12,7 +12,7 @@
 #include "Aircraft.h"
 #include "CommandQueue.h"
 
-//Forward declarations
+//Forward declaration
 namespace sf
 {
 	class RenderWindow;
@@ -22,13 +22,35 @@ class World : private sf::NonCopyable
 {
 public:
 	explicit World(sf::RenderWindow& window);
+
+	/**
+		Called every frame to update the state of the game.
+	*/
 	void update(sf::Time deltaTime);
+
+	/**
+		Draws all the visible entities and scene nodes on the screen.
+	*/
 	void draw();
 
+	/**
+		Returns a mutable reference to the command queue
+		used by the entities in the game.
+	*/
 	CommandQueue& getCommandQueue();
 
 private:
+	/**
+		Loads all the texture files required by the entities in the game.
+	*/
 	void loadTextures();
+
+	/**
+		Builds the game world.
+		1- Initializes the scene layers.
+		2- Set up background texture
+		3- Set up the airplanes (Player and escorts)
+	*/
 	void buildScene();
 
 private:

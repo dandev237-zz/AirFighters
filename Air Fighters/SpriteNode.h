@@ -11,6 +11,9 @@ public:
 	SpriteNode(const sf::Texture& texture, const sf::IntRect& rectangle);
 
 private:
+	/**
+		Draws the sprite node to the game window.
+	*/
 	virtual void drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const;
 
 private:
