@@ -33,10 +33,10 @@ void Player::InitializeBindings()
 	const float playerSpeed = 200.f;
 
 	//Key bindings
-	mKeyBinding[sf::Keyboard::Up] = Action::MoveUp;
-	mKeyBinding[sf::Keyboard::Down] = Action::MoveDown;
-	mKeyBinding[sf::Keyboard::Left] = Action::MoveLeft;
-	mKeyBinding[sf::Keyboard::Right] = Action::MoveRight;
+	mKeyBinding[sf::Keyboard::W] = Action::MoveUp;
+	mKeyBinding[sf::Keyboard::S] = Action::MoveDown;
+	mKeyBinding[sf::Keyboard::A] = Action::MoveLeft;
+	mKeyBinding[sf::Keyboard::D] = Action::MoveRight;
 
 	//Action bindings
 	mActionBinding[Action::MoveUp].action = Command::derivedAction<Aircraft>(AircraftMover(0.0f, -playerSpeed));

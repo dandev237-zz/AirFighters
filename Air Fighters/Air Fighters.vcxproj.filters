@@ -24,6 +24,9 @@
     <Filter Include="Source Files\CommandPattern">
       <UniqueIdentifier>{8835f6fd-1b56-44c2-8776-e91469af0889}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\StateStack">
+      <UniqueIdentifier>{5d1911a7-5c9f-4683-b638-205a778ae534}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -62,6 +65,15 @@
     <ClInclude Include="Player.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="StateStack.h">
+      <Filter>Source Files\StateStack</Filter>
+    </ClInclude>
+    <ClInclude Include="StateIdentifiers.h">
+      <Filter>Source Files\StateStack</Filter>
+    </ClInclude>
+    <ClInclude Include="State.h">
+      <Filter>Source Files\StateStack</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -93,6 +105,12 @@
     </ClCompile>
     <ClCompile Include="Player.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="StateStack.cpp">
+      <Filter>Source Files\StateStack</Filter>
+    </ClCompile>
+    <ClCompile Include="State.cpp">
+      <Filter>Source Files\StateStack</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
