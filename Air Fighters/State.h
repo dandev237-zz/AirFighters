@@ -1,16 +1,26 @@
 #pragma once
 
+#include <SFML\Graphics.hpp>
 #include <memory>
 
 #include "StateStack.h"
+#include "Player.h"
+#include "ResourceIdentifiers.h"
 
 class State
 {
 public:
 	typedef std::unique_ptr<State> StatePtr;
+
+	//Context struct to reuse assets for every state.
 	struct Context
 	{
+		Context(sf::RenderWindow& window, TextureManager& textures, FontManager& fonts, Player& player);
 
+		sf::RenderWindow* mWindow;
+		TextureManager* mTextures;
+		FontManager* mFonts;
+		Player* mPlayer;
 	};
 
 public:
@@ -32,4 +42,3 @@ private:
 	StateStack*	mStack;
 	Context mContext;
 };
-

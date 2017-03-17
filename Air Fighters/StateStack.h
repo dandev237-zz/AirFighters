@@ -1,4 +1,3 @@
-
 #include <SFML\System.hpp>
 #include <SFML\Window.hpp>
 #include <map>
@@ -11,7 +10,7 @@
 class StateStack : private sf::NonCopyable
 {
 public:
-	enum class Action {Push, Pop, Clear};
+	enum class Action { Push, Pop, Clear };
 
 public:
 	explicit StateStack(State::Context context);
@@ -23,8 +22,20 @@ public:
 	template<typename T>
 	void registerState(States::ID stateID);
 
+	/**
+		Update all the active states.
+	*/
 	void update(sf::Time deltaTime);
+
+	/**
+		Draw all active states from bottom to top.
+	*/
 	void draw();
+
+	/**
+		Feed a given event to the state stack and
+		deliver it to the active states.
+	*/
 	void handleEvent(const sf::Event& gameEvent);
 
 	void pushState(States::ID stateID);
@@ -52,9 +63,13 @@ private:
 	/**
 		Returns a smart pointer to the newly created state, given a
 		state ID. It does so by looking up the ID in the mFactories
-		map and using the adequate factory.
+		map and using the adequate factory function.
 	*/
 	State::StatePtr createState(States::ID stateID);
+
+	/**
+		Executes pending actions on the state stack.
+	*/
 	void applyPendingChanges();
 };
 
