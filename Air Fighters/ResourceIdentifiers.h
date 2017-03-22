@@ -9,7 +9,7 @@ namespace sf
 
 namespace Textures
 {
-	enum class ID { Eagle, Raptor, Desert };
+	enum class ID { Eagle, Raptor, Desert, TitleScreen };
 }
 
 namespace Fonts
