@@ -4,6 +4,9 @@
 #include "ResourceManager.h"
 #include "Player.h"
 #include "StateStack.h"
+#include "TitleState.h"
+#include "MenuState.h"
+#include "GameState.h"
 
 #include <SFML/System/Time.hpp>
 #include <SFML/Graphics.hpp>

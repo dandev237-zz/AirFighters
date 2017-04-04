@@ -6,13 +6,13 @@
 
 class GameState : public State
 {
-public:
-	GameState(StateStack& stack, Context context);
-	virtual void draw();
-	virtual bool update(sf::Time deltaTime);
-	virtual bool handleEvent(const sf::Event& gameEvent);
+	public:
+		GameState(StateStack& stack, Context context);
+		virtual void draw();
+		virtual bool update(sf::Time deltaTime);
+		virtual bool handleEvent(const sf::Event& gameEvent);
 
-private:
-	World mWorld;
-	Player mPlayer;
+	private:
+		World mWorld;
+		Player mPlayer;
 };

@@ -27,6 +27,9 @@
     <Filter Include="Source Files\StateStack">
       <UniqueIdentifier>{5d1911a7-5c9f-4683-b638-205a778ae534}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\StateStack\States">
+      <UniqueIdentifier>{1ba3c03e-84d1-41d8-98cf-861523599df4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -74,7 +77,21 @@
     <ClInclude Include="State.h">
       <Filter>Source Files\StateStack</Filter>
     </ClInclude>
-    <ClInclude Include="Application.h" />
+    <ClInclude Include="GameState.h">
+      <Filter>Source Files\StateStack\States</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleState.h">
+      <Filter>Source Files\StateStack\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Application.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuState.h">
+      <Filter>Source Files\StateStack\States</Filter>
+    </ClInclude>
+    <ClInclude Include="PauseState.h">
+      <Filter>Source Files\StateStack\States</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -115,6 +132,18 @@
     </ClCompile>
     <ClCompile Include="Application.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameState.cpp">
+      <Filter>Source Files\StateStack\States</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleState.cpp">
+      <Filter>Source Files\StateStack\States</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuState.cpp">
+      <Filter>Source Files\StateStack\States</Filter>
+    </ClCompile>
+    <ClCompile Include="PauseState.cpp">
+      <Filter>Source Files\StateStack\States</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
